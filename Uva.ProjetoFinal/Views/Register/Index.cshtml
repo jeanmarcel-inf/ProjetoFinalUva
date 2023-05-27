@@ -1,0 +1,33 @@
+﻿@model Uva.ProjetoFinal.Models.RegisterViewModel
+
+    
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" asp-for="Client.Name"/>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="Email.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cep</label>
+        <input type="text" class="form-control" asp-for="Address.Cep" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Home Number</label>
+        <input type="text" class="form-control" asp-for="Address.HomeNumber" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">BirthDate</label>
+        <input type="datetime" class="form-control" asp-for="Client.BirthDate" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cpf</label>
+        <input type="text" class="form-control" asp-for="Client.Cpf" />
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" asp-controller="Register" asp-action="Insert">Inserir</button>
+    </div>
+</form>
+

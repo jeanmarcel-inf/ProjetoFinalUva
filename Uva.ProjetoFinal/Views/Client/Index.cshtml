@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ClientModel>
+<h1>Registro de Clientes</h1>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Data de Nascimento</th>
+            <th scope="col">CPF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach(ClientModel clients in Model)
+            {
+                <tr>
+                    <th scope="row">@clients.Id</th>
+                    <td>@clients.Name</td>
+                    <td>@clients.BirthDate.ToShortDateString()</td>
+                    <td>@clients.Cpf</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
