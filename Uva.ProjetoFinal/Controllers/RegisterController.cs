@@ -23,14 +23,14 @@ namespace Uva.ProjetoFinal.Controllers
         [HttpPost]
         public IActionResult Insert(RegisterViewModel registerViewModel)
         {
-            var clients = new ClientModel
+            var client = new ClientModel
             {
                 Name = registerViewModel.Client.Name,
                 BirthDate = registerViewModel.Client.BirthDate,
                 Cpf = registerViewModel.Client.Cpf,
             };
 
-            var c = _context.Clients.Add(clients);
+            var c = _context.Clients.Add(client);
 
             _context.SaveChanges();
 
@@ -41,12 +41,24 @@ namespace Uva.ProjetoFinal.Controllers
                 ClientId = c.Entity.Id,
             };
 
+            var browsingHistory = new BrowsingHistoryModel
+            {
+                Ip = registerViewModel.BrowsingHistory.Ip,
+                LastAccess = registerViewModel.BrowsingHistory.LastAccess,
+                ClientId = c.Entity.Id,
+            };
+
+            var email = new EmailModel
+            {
+                Email= registerViewModel.Email.Email,
+                ClientId = c.Entity.Id,
+            };
+
             _context.Addresses.Add(address);
+            _context.BrowsingHistory.Add(browsingHistory);
+            _context.Emails.Add(email);
+
             _context.SaveChanges();
-            //_context.Addresses.Add(registerModel.Address);
-            //_context.Emails.Add(registerModel.Email);
-
-
 
             return RedirectToAction("Index");
         }

@@ -11,7 +11,5 @@ namespace Uva.ProjetoFinal.Models
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }
-        public virtual ClientModel Client { get; set; }
-
     }
 }
