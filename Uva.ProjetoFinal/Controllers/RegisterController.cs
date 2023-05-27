@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Net;
 using Uva.ProjetoFinal.Data;
 using Uva.ProjetoFinal.Models;
 
@@ -41,10 +42,19 @@ namespace Uva.ProjetoFinal.Controllers
                 ClientId = c.Entity.Id,
             };
 
+            string ipAddress = Response.HttpContext.Connection.RemoteIpAddress.ToString();
+
+            if(ipAddress == "::1")
+            {
+                ipAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
+            }
+
+            Console.WriteLine(ipAddress);
+
             var browsingHistory = new BrowsingHistoryModel
             {
-                Ip = registerViewModel.BrowsingHistory.Ip,
-                LastAccess = registerViewModel.BrowsingHistory.LastAccess,
+                Ip = ipAddress,
+                LastAccess = DateTime.Now,
                 ClientId = c.Entity.Id,
             };
 

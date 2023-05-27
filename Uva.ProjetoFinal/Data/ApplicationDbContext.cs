@@ -33,7 +33,7 @@ namespace Uva.ProjetoFinal.Data
 
             //BrowsingHistoryModel Configuring
             modelBuilder.Entity<BrowsingHistoryModel>()
-                .Property(prop => prop.Ip).HasMaxLength(12);
+                .Property(prop => prop.Ip).HasMaxLength(25);
 
             //EmailModel Configuring
             modelBuilder.Entity<EmailModel>()

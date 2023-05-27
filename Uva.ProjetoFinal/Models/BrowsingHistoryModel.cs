@@ -9,7 +9,7 @@ namespace Uva.ProjetoFinal.Models
         [Key]
         public int Id { get; set; }
         public string? Ip { get; set; }
-        public DateTime? LastAccess { get; set; } = DateTime.Now;
+        public DateTime? LastAccess { get; set; }
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }

@@ -12,7 +12,7 @@ using Uva.ProjetoFinal.Data;
 namespace Uva.ProjetoFinal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230527152505_AddRelationsToDb")]
+    [Migration("20230527210716_AddRelationsToDb")]
     partial class AddRelationsToDb
     {
         /// <inheritdoc />
@@ -42,12 +42,11 @@ namespace Uva.ProjetoFinal.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("HomeNumber")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
 
                     b.ToTable("Addresses");
                 });
@@ -64,15 +63,13 @@ namespace Uva.ProjetoFinal.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Ip")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime?>("LastAccess")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
 
                     b.ToTable("BrowsingHistory");
                 });
@@ -121,42 +118,7 @@ namespace Uva.ProjetoFinal.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.ToTable("Emails");
-                });
-
-            modelBuilder.Entity("Uva.ProjetoFinal.Models.AddressModel", b =>
-                {
-                    b.HasOne("Uva.ProjetoFinal.Models.ClientModel", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("Uva.ProjetoFinal.Models.BrowsingHistoryModel", b =>
-                {
-                    b.HasOne("Uva.ProjetoFinal.Models.ClientModel", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("Uva.ProjetoFinal.Models.EmailModel", b =>
-                {
-                    b.HasOne("Uva.ProjetoFinal.Models.ClientModel", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
                 });
 #pragma warning restore 612, 618
         }
