@@ -5,6 +5,7 @@
 <div class="container">
 
     @*Clients Table*@
+    <h4>Clientes</h4>
     <table class="table table-hover table-light">
         <thead class ="table-dark">
             <tr>
@@ -28,10 +29,15 @@
                         <td>@registerViewModel.Cpf</td>
                         <td class="col-2">
                             <form method="post">
-                                <button class="rounded-4 btn-sm btn-primary">Editar</button>
+
+                                <button class="rounded-4 btn-sm btn-primary" asp-controller="Client" asp-action="Details" asp-route-id="@registerViewModel.Id">
+                                    Editar
+                                </button>
+
                                 <button class="rounded-4 btn-sm btn-danger" asp-controller="Client" asp-action="Delete" asp-route-id="@registerViewModel.Id">
                                     Deletar
                                 </button>
+
                             </form>
 
                         </td>
@@ -42,13 +48,15 @@
     </table>
 
     @*Addresses Table*@
+
+    <h4 class="mt-5">Endereços</h4>
     <table class="col-6 table table-hover table-light">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Id do Cliente</th>
                 <th scope="col">Cep</th>
                 <th scope="col">Numero</th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody>
@@ -60,10 +68,7 @@
                         <th>@registerViewModel.ClientId</th>
                         <td>@registerViewModel.Cep</td>
                         <td>@registerViewModel.HomeNumber</td>
-                        <td class="col-2">
-                            <button class="rounded-4 btn-sm btn-primary">Editar</button>
-                            <button class=" rounded-4 btn-sm btn-danger ">Deletar</button>
-                        </td>
+                        
                     </tr>
 
                 }
@@ -72,13 +77,13 @@
     </table>
 
     @*BrowsingHistory Table*@
+    <h4 class="mt-5">Históricos de Acesso</h4>
     <table class="table table-hover table-light">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Cliente Id</th>
                 <th scope="col">Ultimo Acesso</th>
                 <th scope="col">Endereço Ip</th>
-                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -90,10 +95,6 @@
                         <th>@registerViewModel.ClientId</th>
                         <td>@registerViewModel.LastAccess</td>
                         <td>@registerViewModel.Ip</td>
-                        <td class="col-2">
-                            <button class="rounded-4 btn-sm btn-primary">Editar</button>
-                            <button class=" rounded-4 btn-sm btn-danger ">Deletar</button>
-                        </td>
                     </tr>
                 }
             }
@@ -101,12 +102,12 @@
     </table>
 
     @*Emails Table*@
+    <h4 class="mt-5">Emails</h4>
     <table class="table table-hover table-light">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Cliente Id</th>
                 <th scope="col">Email</th>
-                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -117,10 +118,6 @@
                     <tr>
                         <th>@registerViewModel.ClientId</th>
                         <td>@registerViewModel.Email</td>
-                        <td class="col-2">
-                            <button class="rounded-4 btn-sm btn-primary">Editar</button>
-                            <button class=" rounded-4 btn-sm btn-danger ">Deletar</button>
-                        </td>
                     </tr>
                 }
             }

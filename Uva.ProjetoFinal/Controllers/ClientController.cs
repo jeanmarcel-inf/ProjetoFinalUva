@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using Uva.ProjetoFinal.Data;
 using Uva.ProjetoFinal.Models;
 
@@ -43,6 +44,48 @@ namespace Uva.ProjetoFinal.Controllers
 
             _context.SaveChanges();
 
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(int id)
+        {
+            var client = _context.Clients.Where(c => c.Id == id).FirstOrDefault();
+            var address = _context.Addresses.Where(a => a.ClientId == id).FirstOrDefault();
+            var browsingHistory = _context.BrowsingHistory.Where(bh => bh.ClientId == id).FirstOrDefault();
+            var email = _context.Emails.Where(e => e.ClientId == id).FirstOrDefault();
+
+            var tables = new RegisterViewModel()
+            {
+                Client = client,
+                Address = address,
+                BrowsingHistory = browsingHistory,
+                Email = email,
+            };
+
+            return View(tables);
+        }
+
+        [HttpPost]
+        public IActionResult Update(RegisterViewModel register, int id)
+        { 
+            
+            var clientEdit = _context.Clients.Where(c => c.Id == id).FirstOrDefault();
+            var addressEdit = _context.Addresses.Where(a => a.ClientId == id).FirstOrDefault();
+            var browsingHistoryEdit = _context.BrowsingHistory.Where(bh => bh.ClientId == id).FirstOrDefault();
+            var emailEdit = _context.Emails.Where(e => e.ClientId == id).FirstOrDefault();
+
+            clientEdit.Name = register.Client.Name;
+            clientEdit.BirthDate = register.Client.BirthDate;
+            clientEdit.Cpf = register.Client.Cpf;
+
+            addressEdit.Cep = register.Address.Cep;
+            addressEdit.Cep = register.Address.HomeNumber;
+
+            browsingHistoryEdit.LastAccess = DateTime.Now;
+
+            emailEdit.Email = register.Email.Email;
+
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }
