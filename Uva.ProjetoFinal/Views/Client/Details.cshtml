@@ -1,0 +1,32 @@
+﻿@model Uva.ProjetoFinal.Models.RegisterViewModel
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" placeholder="@Model.Client.Name" class="form-control" asp-for="Client.Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" placeholder="@Model.Email.Email" class="form-control" asp-for="Email.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cep</label>
+        <input type="text" placeholder="@Model.Address.Cep" class="form-control" asp-for="Address.Cep" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Home Number</label>
+        <input type="text" placeholder="@Model.Address.HomeNumber" class="form-control" asp-for="Address.HomeNumber" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">BirthDate</label>
+        <input type="date" placeholder="@Model.Client.BirthDate" class="form-control" asp-for="Client.BirthDate" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cpf</label>
+        <input type="text" placeholder="@Model.Client.Cpf" class="form-control" asp-for="Client.Cpf" />
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" asp-controller="Client" asp-action="Update" asp-route-id="@Model.Client.Id">Alterar</button>
+    </div>
+</form>
+

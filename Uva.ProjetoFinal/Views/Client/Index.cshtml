@@ -1,26 +1,126 @@
-﻿@model IEnumerable<ClientModel>
-<h1>Registro de Clientes</h1>
-<table class="table table-hover table-dark">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Data de Nascimento</th>
-            <th scope="col">CPF</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if(Model != null)
-        {
-            @foreach(ClientModel clients in Model)
+﻿@model Uva.ProjetoFinal.Models.ListClientsViewModel
+
+<h1 class="text-center display-4 m-4">Registro de Clientes</h1>
+
+<div class="container">
+
+    @*Clients Table*@
+    <h4>Clientes</h4>
+    <table class="table table-hover table-light">
+        <thead class ="table-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Cpf</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
             {
-                <tr>
-                    <th scope="row">@clients.Id</th>
-                    <td>@clients.Name</td>
-                    <td>@clients.BirthDate.ToShortDateString()</td>
-                    <td>@clients.Cpf</td>
-                </tr>
+
+                @foreach (var registerViewModel in Model.Clients)
+                {
+                    <tr>
+                        <th scope="row">@registerViewModel.Id</th>
+                        <td>@registerViewModel.Name</td>
+                        <td>@registerViewModel.BirthDate.ToShortDateString()</td>
+                        <td>@registerViewModel.Cpf</td>
+                        <td class="col-2">
+                            <form method="post">
+
+                                <button class="rounded-4 btn-sm btn-primary" asp-controller="Client" asp-action="Details" asp-route-id="@registerViewModel.Id">
+                                    Editar
+                                </button>
+
+                                <button class="rounded-4 btn-sm btn-danger" asp-controller="Client" asp-action="Delete" asp-route-id="@registerViewModel.Id">
+                                    Deletar
+                                </button>
+
+                            </form>
+
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+    @*Addresses Table*@
+
+    <h4 class="mt-5">Endereços</h4>
+    <table class="col-6 table table-hover table-light">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Id do Cliente</th>
+                <th scope="col">Cep</th>
+                <th scope="col">Numero</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var registerViewModel in Model.Addresses)
+                {
+                    <tr>
+                        <th>@registerViewModel.ClientId</th>
+                        <td>@registerViewModel.Cep</td>
+                        <td>@registerViewModel.HomeNumber</td>
+                        
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+
+    @*BrowsingHistory Table*@
+    <h4 class="mt-5">Históricos de Acesso</h4>
+    <table class="table table-hover table-light">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Cliente Id</th>
+                <th scope="col">Ultimo Acesso</th>
+                <th scope="col">Endereço Ip</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var registerViewModel in Model.BrowsingHistory)
+                {
+                    <tr>
+                        <th>@registerViewModel.ClientId</th>
+                        <td>@registerViewModel.LastAccess</td>
+                        <td>@registerViewModel.Ip</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    @*Emails Table*@
+    <h4 class="mt-5">Emails</h4>
+    <table class="table table-hover table-light">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Cliente Id</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var registerViewModel in Model.Emails)
+                {
+                    <tr>
+                        <th>@registerViewModel.ClientId</th>
+                        <td>@registerViewModel.Email</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
