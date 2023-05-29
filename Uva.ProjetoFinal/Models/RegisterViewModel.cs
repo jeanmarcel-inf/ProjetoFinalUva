@@ -4,7 +4,7 @@
     {
         public ClientModel Client { get; set;}
         public AddressModel Address { get; set; }
-        public BrowsingHistoryModel BrowsingHistory { get; set; }
+        public BrowsingHistoryModel? BrowsingHistory { get; set; }
         public EmailModel Email { get; set; }
     }
 }

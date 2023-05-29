@@ -8,7 +8,13 @@ namespace Uva.ProjetoFinal.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        [MaxLength(8)]
+        [MinLength(8, ErrorMessage = "Minimo de caracteres não foi atingido")]
         public string Cep { get; set; }
+
+        [Required(ErrorMessage = "Este campo é obrigatório")]
         public string HomeNumber { get; set; }
 
         [ForeignKey("Client")]
