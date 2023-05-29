@@ -23,7 +23,7 @@
                 @foreach (var registerViewModel in Model.Clients)
                 {
                     <tr>
-                        <th class="col-2" scope="row">@registerViewModel.Id</th>
+                        <th scope="row">@registerViewModel.Id</th>
                         <td>@registerViewModel.Name</td>
                         <td>@registerViewModel.BirthDate.ToShortDateString()</td>
                         <td>@registerViewModel.Cpf</td>
@@ -55,7 +55,7 @@
             <tr>
                 <th scope="col">Id do Cliente</th>
                 <th scope="col">Cep</th>
-                <th class="col-2" scope="col">Numero</th>
+                <th scope="col">Numero</th>
                 
             </tr>
         </thead>
@@ -65,7 +65,7 @@
                 @foreach (var registerViewModel in Model.Addresses)
                 {
                     <tr>
-                        <th class="col-2">@registerViewModel.ClientId</th>
+                        <th>@registerViewModel.ClientId</th>
                         <td>@registerViewModel.Cep</td>
                         <td>@registerViewModel.HomeNumber</td>
                         
@@ -92,7 +92,7 @@
                 @foreach (var registerViewModel in Model.BrowsingHistory)
                 {
                     <tr>
-                        <th class="col-2">@registerViewModel.ClientId</th>
+                        <th>@registerViewModel.ClientId</th>
                         <td>@registerViewModel.LastAccess</td>
                         <td>@registerViewModel.Ip</td>
                     </tr>
@@ -116,7 +116,7 @@
                 @foreach (var registerViewModel in Model.Emails)
                 {
                     <tr>
-                        <th class="col-2">@registerViewModel.ClientId</th>
+                        <th>@registerViewModel.ClientId</th>
                         <td>@registerViewModel.Email</td>
                     </tr>
                 }

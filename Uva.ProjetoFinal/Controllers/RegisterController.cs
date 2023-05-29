@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using Uva.ProjetoFinal.Data;
 using Uva.ProjetoFinal.Models;
@@ -26,12 +24,6 @@ namespace Uva.ProjetoFinal.Controllers
         [HttpPost]
         public IActionResult Insert(RegisterViewModel registerViewModel)
         {
-            
-            if (!ModelState.IsValid)
-            {
-                return View("Index");
-            }
-
             var client = new ClientModel
             {
                 Name = registerViewModel.Client.Name,
@@ -40,8 +32,8 @@ namespace Uva.ProjetoFinal.Controllers
             };
 
             var c = _context.Clients.Add(client);
-            _context.SaveChanges();
 
+            _context.SaveChanges();
 
             var address = new AddressModel
             {
@@ -56,6 +48,8 @@ namespace Uva.ProjetoFinal.Controllers
             {
                 ipAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
             }
+
+            Console.WriteLine(ipAddress);
 
             var browsingHistory = new BrowsingHistoryModel
             {
