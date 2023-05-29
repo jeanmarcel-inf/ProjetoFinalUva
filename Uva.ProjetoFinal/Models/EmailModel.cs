@@ -7,6 +7,9 @@ namespace Uva.ProjetoFinal.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [ForeignKey("Client")]

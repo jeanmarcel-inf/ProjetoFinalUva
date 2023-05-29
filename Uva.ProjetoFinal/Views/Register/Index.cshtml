@@ -1,30 +1,37 @@
 ﻿@model Uva.ProjetoFinal.Models.RegisterViewModel
 
     
-<form method="post">
+<form method="post" autocomplete="off">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="mb-3">
-        <label class="form-label">Nome</label>
+        <label class="form-label" asp-for="Client.Name">Nome</label>
         <input type="text" class="form-control" asp-for="Client.Name"/>
+        <span asp-validation-for="Client.Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label" asp-for="Email.Email"></label>
         <input type="email" class="form-control" asp-for="Email.Email" />
+        <span asp-validation-for="Email.Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Cep</label>
+        <label class="form-label" asp-for="Address.Cep"></label>
         <input type="text" class="form-control" asp-for="Address.Cep" />
+        <span asp-validation-for="Address.Cep" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Home Number</label>
+        <label class="form-label" asp-for="Address.HomeNumber">Numero da residência</label>
         <input type="text" class="form-control" asp-for="Address.HomeNumber" />
+        <span asp-validation-for="Address.HomeNumber" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">BirthDate</label>
+        <label class="form-label" asp-for="Client.BirthDate">Data de nascimento</label>
         <input type="date" class="form-control" asp-for="Client.BirthDate" />
+        <span asp-validation-for="Client.BirthDate" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Cpf</label>
+        <label class="form-label" asp-for="Client.Cpf"></label>
         <input type="text" class="form-control" asp-for="Client.Cpf" />
+        <span asp-validation-for="Client.Cpf" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <button type="submit" class="btn btn-primary" asp-controller="Register" asp-action="Insert">Inserir</button>
